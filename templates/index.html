@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>超市账单管理系统</title>
+        <link rel="stylesheet" href="../static/css/public.css"/>
+        <link rel="stylesheet" href="../static/css/style.css"/>
+        <link rel="stylesheet" href="../static/css/base.css"/>
+        <link rel="stylesheet" href="../static/css/editTable.css"/>
+        <script language="javascript" type="text/javascript" src="../static/js/jquery-1.7.2.min.js"></script>
+        <script language="javascript" type="text/javascript" src="../static/js/editTable.js"></script>
+    </head>
+    <body>
+        <header class="publicHeader">
+            <h1>不知道是什么系统</h1>
+            <div class="publicHeaderR">
+                <p><span>下午好！</span><span style="color: #fff21b"> {{ username }}</span> , 欢迎你！</p>
+                <a href="#">退出</a>
+            </div>
+        </header>
+        <section class="publicTime">
+            <span id="time">2015年1月1日 11:11  星期一</span>
+        </section>
+        <section class="publicMian">
+            <div class="left">
+                <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+                <nav>
+                    <ul class="list">
+                        <li id="active"><a href="#">主页</a></li>
+                        <li><a href="#">呼叫上传</a></li>
+                        <li><a href="#">结果显示</a></li>
+                        <li><a href="#">资源查看</a></li>
+                        <li><a href="#">系统版本</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="right">
+                <div class="wFont">
+                    <table class="edtitable">
+                        <thead>
+                            <tr>
+                                <th colspan="7">在处理业务窗口客户</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>编号</th>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>电话</th>
+                                <th>欠款</th>
+                                <th>截至日期</th>
+                                <th>期限</th>
+                                <th>处理结果</th>
+                                <th>导入日期</th>
+                                <th class="del-col">操作</th>
+                            </tr>
+                            {% for info in infos %}
+                            <tr>
+                                <td>{{ info.id }}</td>
+                                <td>{{ info.name }}</td>
+                                <td>{{ info.sex }}</td>
+                                <td>{{ info.tel }}</td>
+                                <td>{{ info.debt }}</td>
+                                <td>{{ info.deadline }}</td>
+                                <td>{{ info.delay }}</td>
+                                <td>{{ info.result }}</td>
+                                <td>{{ info.importdate }}</td>
+                                <td class="del-col">
+                                    <a href="javascript:void(0);" class="delBtn">删除</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            {% endfor %}
+                            <tr class="append-row">
+                                <td colspan="7" align="right">
+                                    <input type="button" id="addBtn" value="添 加" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="edtitable">
+                        <thead>
+                            <tr>
+                                <th colspan="7">待处理业务列表</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>编号</th>
+                                <th>名称</th>
+                                <th>代码</th>
+                                <th>所属区域</th>
+                                <th>起始时间</th>
+                                <th>结束时间</th>
+                                <th class="del-col">操作</th>
+                            </tr>
+                            <tr>
+                                <td>0001</td>
+                                <td>曹周祥</td>
+                                <td>SS</td>
+                                <td>南京</td>
+                                <td>2017.03.08</td>
+                                <td>2017.08.08</td>
+                                <td class="del-col">
+                                    <a href="javascript:void(0);" class="delBtn">删除</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>0002</td>
+                                <td>郑晓佳</td>
+                                <td>SS</td>
+                                <td>南京</td>
+                                <td>2017.03.09</td>
+                                <td>2017.08.09</td>
+                                <td class="del-col">
+                                    <a href="javascript:void(0);" class="delBtn">删除</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>0003</td>
+                                <td>学姐</td>
+                                <td>SS</td>
+                                <td>南京</td>
+                                <td>2017.03.10</td>
+                                <td>2017.08.10</td>
+                                <td class="del-col">
+                                    <a href="javascript:void(0);" class="delBtn">删除</a>
+                                </td>
+                            </tr>
+                            <tr class="append-row">
+                                <td colspan="7" align="right">
+                                    <input type="button" id="addBtn" value="添 加" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+                <p>Copyright</p>
+        </footer>
+        <script src="../static/js/time.js"></script>
+        <div style="text-align:center;">
+        </div>
+    </body>
+</html>
