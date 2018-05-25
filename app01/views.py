@@ -31,7 +31,7 @@ def ymlogin(request):
             username_t = input_name
             context ["username"] = username_t
             login(request,result)
-            return redirect("/index/")
+            return redirect("/index/",{'username':username_t})
         else:
             context['error'] = 1
             return render(request,'login.html',context)
@@ -39,18 +39,17 @@ def ymlogin(request):
 
 @login_required
 def upload(request):
-    if request.method == 'GET':
-        return render(request,'upload.html')
-    elif request.method == 'POST':
-        obj = request.FILES.get('fafafa')
-        print "success1"
+    if request.is_ajax():
+        obj = request.FILES.get('f')
+        print obj
         f = open(os.path.join('upload',obj.name),'wb')
         for line in obj.chunks():
             f.write(line)
         f.close()
-        print "success2"
-        return HttpResponse('上传成功')
-    return render(request,'upload.html','test')
+        return HttpResponse("文件上传成功")
+    if request.method == 'GET':
+        return render(request,'upload.html')
+    return render(request,'upload.html')
 
 @login_required
 def index(request):

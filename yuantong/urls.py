@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', views.ymlogin, name = 'ymlogin'), 
     url(r'^index/$', views.index, name = 'index'), 
+    url(r'^upload/$', views.upload,name='upload'),
     #url(r'^sign-in/succeed/$', views.login_succeed, name = "sign_in_succeed"),
 ]

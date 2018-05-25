@@ -52,6 +52,22 @@ td {
     cursor: pointer;
     display: inline-block;
 }
+#yesBtn{
+	background: #5a98de;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #fff;
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+
+}
 .edtitable tr input{
 	background: none;
 	border: none;

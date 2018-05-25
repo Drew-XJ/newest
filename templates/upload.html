@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>账单管理系统</title>
+    <link rel="stylesheet" href="../static/css/public.css"/>
+    <link rel="stylesheet" href="../static/css/style.css"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <link href="../static/css/base.css" type="text/css" rel="stylesheet" />
+    <link href="../static/css/editTable.css" type="text/css" rel="stylesheet" />
+    <script language="javascript" type="text/javascript" src="../static/js/jquery-1.7.2.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../static/js/editTable.js"></script>
+</head>
+<body>
+<!--头部-->
+<header class="publicHeader">
+        <h1>不知道是什么系统</h1>
+        <div class="publicHeaderR">
+            <p><span style="color: #fff21b"> {{ username }}</span> 欢迎你！</p>
+            <a href="/login/">退出</a>
+        </div>
+    </header>
+<!--时间-->
+<section class="publicTime">
+    <span id="time">2015年1月1日 11:11  星期一</span>
+</section>
+<!--主体内容-->
+<section class="publicMian ">
+        <div class="left">
+                <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+                <nav>
+                    <ul class="list">
+                        <li><a href="/index/">主页</a></li>
+                        <li id="active"><a href="/upload/">呼叫上传</a></li>
+                        <li><a href="#">结果显示</a></li>
+                        <li><a href="#">资源查看</a></li>
+                        <li><a href="#">系统版本</a></li>
+                    </ul>
+                </nav>
+            </div>
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>供应商管理页面</span>
+        </div>
+        <h2> 数据上传提示：</h2>
+        <br>
+        <h3>Step1:请根据上传文件样式进行上传或者通过数据添加进行数据载入。</h3>
+        <br>
+        <h3>Step2:上传文件样式下载。</h3><a href="../static/xxx.xlsx">下载模板</a>        
+        <br>
+        <br>
+        <h3>Step3:上传文件。</h3>
+        {% csrf_token %}
+        <p><input type="file" id="f"></p>
+        <button class="ajax_btn">上传</button>
+        <br>
+        <br>
+        <h3>Step4: 完成。</h3>
+        <table class="edtitable">
+                <thead>
+                    <tr>
+                        <th colspan="7">添加数据</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>名字</th>
+                        <th>性别</th>
+                        <th>电话号码</th>
+                        <th>欠款金额</th>
+                        <th>截至时间</th>
+                        <th>逾期天数</th>
+                        <th class="del-col">操作</th>
+                    </tr>
+                    <tr class="append-row">
+                        <td colspan="7" align="right">
+                            <input type="button" id="addBtn" value="添 加" />
+                            <input type="button" id="yesBtn" value="确 认" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</section>
+<footer class="footer">
+</footer>
+
+<script src="../static/js/jquery.js"></script>
+<script src="../static/js/js.js"></script>
+<script src="../static/js/time.js"></script>
+
+<script>
+        $(".ajax_btn").click(function () {
+            var formdata = new FormData();
+            formdata.append("csrfmiddlewaretoken", $("[name='csrfmiddlewaretoken']").val());
+            formdata.append("f", $("#f")[0].files[0]);
+            $.ajax({
+                url: "/upload/",
+                type: "post",
+                data: formdata,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    alert("上传成功！")
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            })
+    
+        })
+    </script>
+
+</body>
+</html>
